@@ -41,7 +41,7 @@ object JStackParser {
 
   def main(args : Array[String]): Unit = {
     val list: Filterable = read()
-    val woNio: Filterable = list
+    val filtered: Filterable = list
       .dropContaining("nio")
       .dropContaining("buildQUeue")
       .dropContaining("parallelgc")
@@ -52,7 +52,7 @@ object JStackParser {
       .dropContaining("compilerthread")
 
 //    println(s"entries without nio: $woNio")
-    println(s"no of entries without nio: ${woNio.count}")
+    println(s"no of entries left: ${filtered.count}")
 
     println(s"buildQueueEntries: ${list.getContaining("buildqueue")}")
   }
@@ -76,4 +76,3 @@ case class Filterable(entries: List[String]) {
     t.toUpperCase().contains(text.toUpperCase)
   }
 }
-
